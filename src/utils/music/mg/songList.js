@@ -129,14 +129,14 @@ export default {
     const { url: location, statusCode } = await requestObj_listDetailLink.promise
     // console.log(body, location)
     if (statusCode > 400) return this.getDetailUrl(link, page, ++retryNum)
-    if (location) {
+    if (location.split('?')[0] != link.split('?')[0]) {
       this.cachedUrl[link] = location
       return this.getListDetail(location, page)
     }
     return Promise.reject(new Error('link get failed'))
   },
 
-  getListDetail(id, page) { // 获取歌曲列表内的音乐
+  getListDetail(id, page, retryNum = 0) { // 获取歌曲列表内的音乐
     // https://h5.nf.migu.cn/app/v4/p/share/playlist/index.html?id=184187437&channel=0146921
     // http://c.migu.cn/00bTY6?ifrom=babddaadfde4ebeda289d671ab62f236
     if (/playlist\/index\.html\?/.test(id)) {
@@ -149,8 +149,8 @@ export default {
     }
 
     return Promise.all([
-      this.getListDetailList(id, page),
-      this.getListDetailInfo(id),
+      this.getListDetailList(id, page, retryNum),
+      this.getListDetailInfo(id, retryNum),
     ]).then(([listData, info]) => {
       listData.info = info
       return listData
