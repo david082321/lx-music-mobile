@@ -1,7 +1,7 @@
 {
   "name": "lx-music-mobile",
-  "version": "0.15.1-sl",
-  "versionCode": 48,
+  "version": "0.15.2-sl",
+  "versionCode": 49,
   "scripts": {
     "ar": "react-native run-android",
     "ios": "react-native run-ios",
@@ -51,7 +51,7 @@
     "events": "^3.3.0",
     "i18next": "^22.1.5",
     "js-htmlencode": "^0.3.0",
-    "lrc-file-parser": "^2.2.3",
+    "lrc-file-parser": "^2.2.6",
     "pako": "^2.1.0",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
